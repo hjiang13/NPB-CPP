@@ -1,20 +1,32 @@
-SHELL=/bin/sh
+# Auto-generated Makefile for FT (multi OPT_LEVEL version)
+
+CC=clang++-18
 BENCHMARK=ft
-BENCHMARKU=FT
+CLASS=A
 
-include ../config/make.def
+OPT_LEVEL?=0
 
-OBJS = ft.o ${COMMON}/c_${RAND}.o ${COMMON}/c_print_results.o \
-       ${COMMON}/c_timers.o ${COMMON}/c_wtime.o #../omp-prof.o
+CFLAGS=-O$(OPT_LEVEL) -fopenmp -I . -I ../common -DCLASS=$(CLASS)
+LDFLAGS=-fopenmp -lm
 
-include ../sys/make.common
+COMMON_OBJS=../common/c_print_results.cpp ../common/c_randdp.cpp ../common/c_timers.cpp ../common/wtime.cpp
+BENCH_SRC=ft.cpp
+BENCH_EXE=FT_O$(OPT_LEVEL)
+LLVM_FILE=FT_O$(OPT_LEVEL).ll
 
-${PROGRAM}: config ${OBJS}
-	${CLINK} ${CLINKFLAGS} -o ${PROGRAM} ${OBJS} ${C_LIB}
+all: $(BENCH_EXE) $(LLVM_FILE)
 
-ft.o:             ft.cpp npbparams.hpp
-	${CCOMPILE} ft.cpp
+$(BENCH_EXE): $(BENCH_SRC) $(COMMON_OBJS) npbparams.hpp
+	$(CC) $(CFLAGS) $(BENCH_SRC) $(COMMON_OBJS) $(LDFLAGS) -o $(BENCH_EXE)
+
+$(LLVM_FILE): $(BENCH_SRC)
+	$(CC) $(CFLAGS) -emit-llvm -S $(BENCH_SRC) $(LDFLAGS) -o $(LLVM_FILE)
+
+run: $(BENCH_EXE)
+	/usr/bin/time -f "%e" ./$(BENCH_EXE) > stdout_O$(OPT_LEVEL).txt 2> time_O$(OPT_LEVEL).txt
+
+npbparams.hpp:
+	../sys/setparams $(BENCHMARK) $(CLASS)
 
 clean:
-	- rm -f *.o *~ mputil*
-	- rm -f ft npbparams.hpp core
+	rm -f FT_O* stdout_O*.txt time_O*.txt *.ll npbparams.hpp *.o

@@ -1,0 +1,14 @@
+Benchmark,IRfile_O0,Runtime_O0,IRfile_O1,Runtime_O1,IRfile_O2,Runtime_O2,IRfile_O3,Runtime_O3,IRfile_Oz,Runtime_Oz
+MG,MG_O0.ll,3.85,MG_O1.ll,2.62,MG_O2.ll,1.69,MG_O3.ll,3.16,MG_Oz.ll,1.68
+collected_ll_files,,,,,,,,,,
+FT,FT_O0.ll,2.20,FT_O1.ll,0.72,FT_O2.ll,0.75,FT_O3.ll,0.53,FT_Oz.ll,0.85
+CG,CG_O0.ll,1.83,CG_O1.ll,0.57,CG_O2.ll,0.97,CG_O3.ll,0.93,CG_Oz.ll,0.92
+common,,,,,,,,,,
+sys,,,,,,,,,,
+EP,EP_O0.ll,1.86,EP_O1.ll,1.00,EP_O2.ll,1.04,EP_O3.ll,1.03,EP_Oz.ll,1.02
+IS,IS_O0.ll,0.76,IS_O1.ll,0.22,IS_O2.ll,0.16,IS_O3.ll,0.23,IS_Oz.ll,0.23
+LU,LU_O0.ll,20.76,LU_O1.ll,6.28,LU_O2.ll,6.87,LU_O3.ll,6.98,LU_Oz.ll,6.51
+config,,,,,,,,,,
+BT,BT_O0.ll,23.47,BT_O1.ll,7.35,BT_O2.ll,6.75,BT_O3.ll,6.69,BT_Oz.ll,7.31
+SP,SP_O0.ll,21.53,SP_O1.ll,6.93,SP_O2.ll,5.79,SP_O3.ll,5.37,SP_Oz.ll,6.21
+bin,,,,,,,,,,
